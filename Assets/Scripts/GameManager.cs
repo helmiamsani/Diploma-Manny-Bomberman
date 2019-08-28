@@ -30,9 +30,25 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class GlobalStateManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    #region Singleton
+    public static GameManager Instance = null;
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(Instance.gameObject);
+        }
+
+        Instance = this;
+    }
+    #endregion
+
+    public List<GameObject> Players = new List<GameObject>();
+
     private int deadPlayer = 0;
     private int deadPlayerNumber = -1;
 
